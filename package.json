@@ -1,0 +1,115 @@
+{
+  "name": "widelog",
+  "version": "1.0.0",
+  "description": "Wide event logger for Node.js with adapters and middlewares for popular logging libraries and web frameworks.",
+  "type": "module",
+  "keywords": [
+    "fastify",
+    "logger",
+    "logging",
+    "observability",
+    "pino",
+    "prisma",
+    "structured",
+    "telemetry",
+    "wide"
+  ],
+  "author": "Luca Liberati <info@lucaliberati.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codker/widelog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codker/widelog/issues"
+  },
+  "homepage": "https://github.com/codker/widelog#readme",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./adapters/pino": {
+      "types": "./dist/adapters/pino.d.ts",
+      "import": "./dist/adapters/pino.js"
+    },
+    "./middlewares/fastify": {
+      "types": "./dist/middlewares/fastify.d.ts",
+      "import": "./dist/middlewares/fastify.js"
+    },
+    "./middlewares/prisma": {
+      "types": "./dist/middlewares/prisma.d.ts",
+      "import": "./dist/middlewares/prisma.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run lint && npm test && npm run build",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@prisma/client": "^7.3.0",
+    "@tsconfig/recommended": "^1.0.13",
+    "@types/node": "^22.13.1",
+    "eslint": "^9.39.2",
+    "fastify": "^5.7.4",
+    "fastify-plugin": "^5.1.0",
+    "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
+    "pino": "^10.3.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "@prisma/client": "^7.3.0",
+    "fastify": "^5.7.4",
+    "fastify-plugin": "^5.1.0",
+    "pino": "^10.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@prisma/client": {
+      "optional": true
+    },
+    "fastify": {
+      "optional": true
+    },
+    "fastify-plugin": {
+      "optional": true
+    },
+    "pino": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}
